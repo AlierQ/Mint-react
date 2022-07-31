@@ -6,14 +6,14 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 const Top = styled.div`
-  border: 1px solid yellow;
+  //border: 1px solid yellow;
 `;
 const Content = styled.div`
-  border: 1px solid blue;
+  //border: 1px solid blue;
   flex-grow: 1;
 `;
 const Bottom = styled.div`
-  border: 1px solid red;
+  //border: 1px solid red;
 `;
 
 const Layout = (props: any) => {

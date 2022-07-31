@@ -16,9 +16,20 @@ const Content = styled.div`
     align-items: center;
     text-decoration: none;
 
+    > div {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #79c79f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 40px;
+    }
+
     > span {
       margin-top: 2px;
-      font-size: 14px;
+      font-size: 12px;
       color: #3f3e3f;
     }
   }
@@ -29,15 +40,17 @@ const Nav = () => {
   return (
     <Content>
       <Link to="/">
-        <Icon className="detail" color="red" size="30"/>
+        <Icon className="detail" color="#333" size="32"/>
         <span>明细</span>
       </Link>
       <Link to="/add">
-        <Icon className="add" color="blue" size="30"/>
+        <div>
+          <Icon className="add" color="#333" size="20"/>
+        </div>
         <span>记一笔</span>
       </Link>
       <Link to="/statistics">
-        <Icon className="statistics" color="#ccc" size="30"/>
+        <Icon className="statistics" color="#333" size="32"/>
         <span>统计</span>
       </Link>
     </Content>
