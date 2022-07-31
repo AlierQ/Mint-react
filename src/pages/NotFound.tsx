@@ -1,12 +1,13 @@
-import {Link} from 'react-router-dom';
+import Layout from 'components/Layout';
 
-const NotFound = ()=>{
+const NotFound = () => {
   return (
-    <>
+    <Layout>
+      <div/>
       <div>这里是404页面</div>
-      <Link to="/">回主页</Link>
-    </>
-  )
-}
+      <div/>
+    </Layout>
+  );
+};
 
 export default NotFound;

@@ -1,12 +1,16 @@
-import {Link} from 'react-router-dom';
+import Nav from 'components/Nav';
+import Layout from 'components/Layout';
 
-const Add = ()=>{
+const Add = () => {
   return (
-    <>
-      <div>这里是Add页面</div>
-      <Link to="/statistics">去统计页面</Link>
-    </>
-  )
-}
+    <Layout>
+      <div>这里是记账页面的头部</div>
+      <div>这里是记账页面的内容</div>
+      <div>
+        <Nav/>
+      </div>
+    </Layout>
+  );
+};
 
 export default Add;
