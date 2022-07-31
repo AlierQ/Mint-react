@@ -29,7 +29,7 @@ const Nav = () => {
   return (
     <Content>
       <Link to="/">
-        <Icon className="add" color="red" size="30"/>
+        <Icon className="detail" color="red" size="30"/>
         <span>明细</span>
       </Link>
       <Link to="/add">
@@ -37,7 +37,7 @@ const Nav = () => {
         <span>记一笔</span>
       </Link>
       <Link to="/statistics">
-        <Icon className="add" color="#ccc" size="30"/>
+        <Icon className="statistics" color="#ccc" size="30"/>
         <span>统计</span>
       </Link>
     </Content>
