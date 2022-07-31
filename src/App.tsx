@@ -1,6 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  color: grey !important;
+  width: 200px;
+`;
 
 function App() {
   return (
@@ -18,6 +24,7 @@ function App() {
         >
           Learn React
         </a>
+        <Button>你好</Button>
       </header>
     </div>
   );
