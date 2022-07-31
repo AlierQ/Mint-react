@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import React from 'react';
 import styled from 'styled-components';
 import Icon from 'components/Icon';
@@ -15,6 +15,22 @@ const Content = styled.div`
     justify-content: flex-end;
     align-items: center;
     text-decoration: none;
+
+    &.active {
+      svg {
+        fill: #79c79f;
+      }
+
+      > span {
+        color: #79c79f !important;
+      }
+    }
+
+    &.add-active {
+      > span {
+        color: #79c79f !important;
+      }
+    }
 
     > div {
       width: 40px;
@@ -39,20 +55,23 @@ const Nav = () => {
 
   return (
     <Content>
-      <Link to="/">
+      <NavLink to="/" className={({isActive}) =>
+        isActive ? 'active' : 'undefined'}>
         <Icon className="detail" color="#333" size="32"/>
         <span>明细</span>
-      </Link>
-      <Link to="/add">
+      </NavLink>
+      <NavLink to="/add" className={({isActive}) =>
+        isActive ? 'add-active' : 'undefined'}>
         <div>
           <Icon className="add" color="#333" size="20"/>
         </div>
         <span>记一笔</span>
-      </Link>
-      <Link to="/statistics">
+      </NavLink>
+      <NavLink to="/statistics" className={({isActive}) =>
+        isActive ? 'active' : 'undefined'}>
         <Icon className="statistics" color="#333" size="32"/>
         <span>统计</span>
-      </Link>
+      </NavLink>
     </Content>
   );
 };
