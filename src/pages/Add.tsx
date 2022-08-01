@@ -1,5 +1,6 @@
 import Layout from 'components/Layout';
-import InputPad from 'components/InputPad'
+import InputPad from 'components/InputPad';
+import TagsList from 'components/TagsList';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
@@ -47,7 +48,9 @@ const Add = () => {
         <div className="in selected">收入</div>
         <Link to="/" className="close">取消</Link>
       </Top>
-      <Content>这里是记账页面的内容</Content>
+      <Content>
+        <TagsList/>
+      </Content>
       <Bottom><InputPad/></Bottom>
     </Layout>
   );
