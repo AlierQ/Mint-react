@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Icon from 'components/Icon';
+import React, {useState} from 'react';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -42,34 +43,120 @@ const Wrapper = styled.div`
   }
 `;
 
-const Pad = () => {
+const Pad:React.FC = () => {
+  // 存储输入的数字
+  const [outNumber, setOutNumber] = useState<string>('0');
+
+  // 输入数据
+  const inputNumber = (el: HTMLTableDataCellElement) => {
+    const str = el.textContent;
+    if (el) {
+      // 没有小数点的请情况下长度最长为16位
+      if (outNumber.indexOf('.') === -1 && outNumber.length === 16) {
+        return;
+      }
+      // 小数点之后只能有两位
+      if (outNumber.indexOf('.') !== -1) {
+        if (outNumber.length === outNumber.indexOf('.') + 3) {
+          return;
+        }
+      }
+      // 处理多次输入"."
+      if (str === '.') {
+        if (!(outNumber.indexOf('.') !== -1)) {
+          setOutNumber((value) => value + str);
+        }
+      } else {
+        // 处理0的问题
+        if (outNumber === '0') {
+          if (str === '0') {
+            return;
+          } else {
+            setOutNumber(str as string);
+          }
+        } else {
+          setOutNumber((value) => value + str);
+        }
+      }
+    }
+  };
+
+  // 删除键
+  const deleteNumber = () => {
+    if (outNumber.length - 1 === 0) {
+      setOutNumber('0');
+    } else {
+      setOutNumber(outNumber.slice(0, -1));
+    }
+  };
+
+  // 清空键
+  const emptyNumber = () => {
+    setOutNumber('0');
+  };
   return (
     <Wrapper>
       <table>
         <tbody>
         <tr>
-          <td>7</td>
-          <td>8</td>
-          <td>9</td>
-          <td className="characters">清空</td>
+          {
+            ['7', '8', '9'].map((item) => {
+              return (
+                <td key={item} onClick={(e: React.MouseEvent) => {
+                  inputNumber(e.target as HTMLTableDataCellElement);
+                }}
+                >{item}</td>
+              );
+            })
+          }
+          <td className="characters" onClick={
+            () => {
+              emptyNumber();
+            }
+          }>清空
+          </td>
         </tr>
         <tr>
-          <td>4</td>
-          <td>5</td>
-          <td>6</td>
-          <td className="icon">
+          {
+            ['4', '5', '6'].map((item) => {
+              return (
+                <td key={item} onClick={(e: React.MouseEvent) => {
+                  inputNumber(e.target as HTMLTableDataCellElement);
+                }}
+                >{item}</td>
+              );
+            })
+          }
+          <td className="icon" onClick={() => {
+            deleteNumber();
+          }}>
             <Icon name="clear" color="#333" size="26"/>
           </td>
         </tr>
         <tr>
-          <td>1</td>
-          <td>2</td>
-          <td>3</td>
+          {
+            ['1', '2', '3'].map((item) => {
+              return (
+                <td key={item} onClick={(e: React.MouseEvent) => {
+                  inputNumber(e.target as HTMLTableDataCellElement);
+                }}
+                >{item}</td>
+              );
+            })
+          }
           <td className="characters done" rowSpan={2}>完成</td>
         </tr>
         <tr>
-          <td colSpan={2}>0</td>
-          <td>.</td>
+          {
+            ['0', '.'].map((item) => {
+              return (
+                <td key={item} onClick={(e: React.MouseEvent) => {
+                  inputNumber(e.target as HTMLTableDataCellElement);
+                }}
+                >{item}</td>
+              );
+            })
+          }
         </tr>
         </tbody>
       </table>
