@@ -1,5 +1,5 @@
 type Props = {
-  className: string
+  name: string
   color: string
   size: string
 }
@@ -7,13 +7,13 @@ type Props = {
 const Icon = (props: Props) => {
   try {
     // 动态引入svg，相当于按需加载
-    require(`icons/${props.className}.svg`);
+    require(`icons/${props.name}.svg`);
   } catch (error) {
-    throw new Error('not find ' + props.className + ' svg file');
+    throw new Error('not find ' + props.name + ' svg file');
   }
   return (
     <svg fill={props.color} width={props.size} height={props.size}>
-      <use xlinkHref={'#' + props.className}/>
+      <use xlinkHref={'#' + props.name}/>
     </svg>
   );
 };

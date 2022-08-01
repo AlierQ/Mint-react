@@ -73,7 +73,9 @@ const InputPad = ()=>{
               <td>4</td>
               <td>5</td>
               <td>6</td>
-              <td><Icon className="clear" color="#333" size="18"/></td>
+              <td>
+                <Icon name="clear" color="#333" size="1em"/>
+              </td>
             </tr>
             <tr>
               <td >1</td>

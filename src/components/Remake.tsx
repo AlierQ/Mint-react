@@ -31,7 +31,7 @@ const Content = styled.div`
 const Remake = () => {
   return (
     <Content>
-      <Icon className="remake" color="#2fb86b" size="22"/>
+      <Icon name="remake" color="#2fb86b" size="22"/>
       <label>
         备注:&nbsp;
       </label>

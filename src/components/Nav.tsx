@@ -57,19 +57,19 @@ const Nav = () => {
     <Content>
       <NavLink to="/" className={({isActive}) =>
         isActive ? 'active' : 'undefined'}>
-        <Icon className="detail" color="#333" size="32"/>
+        <Icon name="detail" color="#333" size="32"/>
         <span>明细</span>
       </NavLink>
       <NavLink to="/add" className={({isActive}) =>
         isActive ? 'add-active' : 'undefined'}>
         <div>
-          <Icon className="add" color="#333" size="20"/>
+          <Icon name="add" color="#333" size="20"/>
         </div>
         <span>记一笔</span>
       </NavLink>
       <NavLink to="/statistics" className={({isActive}) =>
         isActive ? 'active' : 'undefined'}>
-        <Icon className="statistics" color="#333" size="32"/>
+        <Icon name="statistics" color="#333" size="32"/>
         <span>统计</span>
       </NavLink>
     </Content>

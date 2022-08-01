@@ -68,7 +68,7 @@ const TagsList = () => {
             return (
               <li key={item.id}>
                 <div className="one-icon" >
-                  <Icon className={item.className} color="#545353" size="32"/>
+                  <Icon name={item.className} color="#545353" size="32"/>
                 </div>
                 <div className="label">{item.remake}</div>
               </li>
@@ -77,7 +77,7 @@ const TagsList = () => {
         }
         <li>
           <Link to="/label" className="one-icon">
-            <Icon className="setting" color="#545353" size="32"/>
+            <Icon name="setting" color="#545353" size="32"/>
           </Link>
           <div className="label">设置</div>
         </li>
