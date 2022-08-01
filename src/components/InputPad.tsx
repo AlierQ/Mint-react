@@ -41,8 +41,14 @@ const Pad = styled.div`
         color: #333333;
         font-size: 22px;
         text-align: center;
+        &.icon{
+          border:none;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
-
       .characters {
         font-size: 18px;
       }
@@ -73,8 +79,8 @@ const InputPad = ()=>{
               <td>4</td>
               <td>5</td>
               <td>6</td>
-              <td>
-                <Icon name="clear" color="#333" size="1em"/>
+              <td className="icon">
+                <Icon name="clear" color="#333" size="26"/>
               </td>
             </tr>
             <tr>
