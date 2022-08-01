@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Pad:React.FC = () => {
+const Pad: React.FC = () => {
   // 存储输入的数字
   const [outNumber, setOutNumber] = useState<string>('0');
 
@@ -150,7 +150,7 @@ const Pad:React.FC = () => {
           {
             ['0', '.'].map((item) => {
               return (
-                <td key={item} onClick={(e: React.MouseEvent) => {
+                <td key={item} colSpan={item === '0' ? 2 : 0} onClick={(e: React.MouseEvent) => {
                   inputNumber(e.target as HTMLTableDataCellElement);
                 }}
                 >{item}</td>
