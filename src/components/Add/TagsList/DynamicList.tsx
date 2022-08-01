@@ -1,4 +1,5 @@
 import Icon from '../../Icon';
+import React, {useState} from 'react';
 
 const out = [
   {className: 'catering', remake: '餐饮', id: 1},
@@ -10,19 +11,39 @@ const out = [
   {className: 'recreation', remake: '娱乐', id: 7},
 ];
 
-const DynamicList = () => {
+// 自定义标签ts类型
+type Tags = {
+  id: number
+  className: string
+  remake: string
+}
+
+const DynamicList: React.FC = () => {
+  const [tags, setTags] = useState<Tags[]>(out);
+  // 选中标签 id
+  const [selectedTagsID, setSelectedTagsID] = useState<number>(-1);
+  // 选中 id 点击事件
+  const onSelectTag = (id: number) => {
+    setSelectedTagsID(id);
+  };
+  // 选中设置样式
+  const getSelectedCss = (id: number) => {
+    return selectedTagsID === id ? 'selected' : undefined;
+  };
   return (
     <>
-      {out.map((item) => {
+      {tags.map((item) => {
         return (
-
-          <li key={item.id}>
-            <div className="one-icon">
+          <li key={item.id} onClick={
+            () => {
+              onSelectTag(item.id);
+            }
+          }>
+            <div className={'one-icon ' + getSelectedCss(item.id)}>
               <Icon name={item.className} color="#545353" size="32"/>
             </div>
             <div className="label">{item.remake}</div>
           </li>
-
         );
       })}
     </>
