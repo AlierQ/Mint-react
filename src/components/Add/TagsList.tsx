@@ -1,16 +1,7 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import Icon from 'components/Icon';
-
-const out = [
-  {className: 'catering', remake: '餐饮', id: 1},
-  {className: 'shopping', remake: '购物', id: 2},
-  {className: 'dayuse', remake: '日用', id: 3},
-  {className: 'traffic', remake: '交通', id: 4},
-  {className: 'sport', remake: '运动', id: 5},
-  {className: 'pet', remake: '宠物', id: 6},
-  {className: 'recreation', remake: '娱乐', id: 7},
-];
+import DynamicList from 'components/Add/TagsList/DynamicList';
 
 const List = styled.div`
   display: flex;
@@ -63,18 +54,7 @@ const TagsList = () => {
   return (
     <List>
       <ul>
-        {
-          out.map((item) => {
-            return (
-              <li key={item.id}>
-                <div className="one-icon" >
-                  <Icon name={item.className} color="#545353" size="32"/>
-                </div>
-                <div className="label">{item.remake}</div>
-              </li>
-            );
-          })
-        }
+        <DynamicList/>
         <li>
           <Link to="/label" className="one-icon">
             <Icon name="setting" color="#545353" size="32"/>

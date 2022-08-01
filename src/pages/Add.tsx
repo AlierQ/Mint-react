@@ -1,6 +1,6 @@
 import Layout from 'components/Layout';
-import InputPad from 'components/InputPad';
-import TagsList from 'components/TagsList';
+import InputPad from 'components/Add/InputPad';
+import TagsList from 'components/Add/TagsList';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
