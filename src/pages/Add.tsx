@@ -3,6 +3,7 @@ import InputPad from 'components/Add/InputPad';
 import TagsList from 'components/Add/TagsList';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
 
 const Top = styled.div`
   height: 80px;
@@ -12,8 +13,7 @@ const Top = styled.div`
   align-items: flex-end;
   padding-bottom: 10px;
 
-  .in,
-  .out {
+  > div {
     font-size: 22px;
     margin: 0 10px;
     position: relative;
@@ -40,12 +40,20 @@ const Top = styled.div`
 const Content = styled.div``;
 const Bottom = styled.div``;
 
-const Add = () => {
+const Add: React.FC = () => {
+  const [category, setCategory] = useState<string>('out');
   return (
+
     <Layout>
       <Top>
-        <div className="out selected">支出</div>
-        <div className="in selected">收入</div>
+        <div className={category === 'out' ? 'selected' : ''} onClick={() => {
+          setCategory('out');
+        }}>支出
+        </div>
+        <div className={category === 'in' ? 'selected' : ''} onClick={() => {
+          setCategory('in');
+        }}>收入
+        </div>
         <Link to="/" className="close">取消</Link>
       </Top>
       <Content>
