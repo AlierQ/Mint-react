@@ -125,7 +125,13 @@ const Add: React.FC = () => {
                   }}/>
       </Content>
       <Bottom>
-        <InputPad amount={info.amount}/>
+        <InputPad amount={info.amount}
+                  setAmount={(amount)=>{
+                    setInfo({
+                      ...info,
+                      amount: amount
+                    });
+                  }}/>
       </Bottom>
     </Layout>
   );

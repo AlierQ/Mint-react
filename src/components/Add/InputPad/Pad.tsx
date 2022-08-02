@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Icon from 'components/Icon';
-import React, {useState} from 'react';
+import React from 'react';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -43,39 +43,50 @@ const Wrapper = styled.div`
   }
 `;
 
-const Pad: React.FC = () => {
-  // 存储输入的数字
-  const [outNumber, setOutNumber] = useState<string>('0');
+type Props = {
+  outNumber: string
+  setNumber: (number: string) => void
+  setAmount: (amount: number) => void
+}
+
+const Pad: React.FC<Props> = (props) => {
+
+  const setNumber = (number: string) => {
+    // 将数据传给 Add
+    props.setAmount(Number(number));
+    // 将数据显示给 OutPut
+    props.setNumber(number);
+  };
 
   // 输入数据
   const inputNumber = (el: HTMLTableDataCellElement) => {
     const str = el.textContent;
     if (el) {
       // 没有小数点的请情况下长度最长为16位
-      if (outNumber.indexOf('.') === -1 && outNumber.length === 16) {
+      if (props.outNumber.indexOf('.') === -1 && props.outNumber.length === 16) {
         return;
       }
       // 小数点之后只能有两位
-      if (outNumber.indexOf('.') !== -1) {
-        if (outNumber.length === outNumber.indexOf('.') + 3) {
+      if (props.outNumber.indexOf('.') !== -1) {
+        if (props.outNumber.length === props.outNumber.indexOf('.') + 3) {
           return;
         }
       }
       // 处理多次输入"."
       if (str === '.') {
-        if (!(outNumber.indexOf('.') !== -1)) {
-          setOutNumber((value) => value + str);
+        if (!(props.outNumber.indexOf('.') !== -1)) {
+          setNumber(props.outNumber + str);
         }
       } else {
         // 处理0的问题
-        if (outNumber === '0') {
+        if (props.outNumber === '0') {
           if (str === '0') {
             return;
           } else {
-            setOutNumber(str as string);
+            setNumber(str as string);
           }
         } else {
-          setOutNumber((value) => value + str);
+          setNumber(props.outNumber + str);
         }
       }
     }
@@ -83,16 +94,16 @@ const Pad: React.FC = () => {
 
   // 删除键
   const deleteNumber = () => {
-    if (outNumber.length - 1 === 0) {
-      setOutNumber('0');
+    if (props.outNumber.length - 1 === 0) {
+      setNumber('0');
     } else {
-      setOutNumber(outNumber.slice(0, -1));
+      setNumber(props.outNumber.slice(0, -1));
     }
   };
 
   // 清空键
   const emptyNumber = () => {
-    setOutNumber('0');
+    setNumber('0');
   };
   return (
     <Wrapper>
@@ -144,7 +155,11 @@ const Pad: React.FC = () => {
               );
             })
           }
-          <td className="characters done" rowSpan={2}>完成</td>
+          <td className="characters done" rowSpan={2}
+              onClick={() => {
+              }}
+          >完成
+          </td>
         </tr>
         <tr>
           {

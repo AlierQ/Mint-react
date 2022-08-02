@@ -12,9 +12,13 @@ const Wrapper = styled.div`
   font-family: Consolas, monospace;
 `;
 
-const OutPad: React.FC = () => {
+type Props = {
+  outNumber:string
+}
+
+const OutPad: React.FC<Props>  = (props) => {
   return (
-    <Wrapper>0123</Wrapper>
+    <Wrapper>{props.outNumber}</Wrapper>
   );
 };
 
