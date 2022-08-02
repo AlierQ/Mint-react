@@ -65,7 +65,11 @@ type Tags = {
 
 const Add: React.FC = () => {
   const [category, setCategory] = useState<string>('out');
+
   const [tags, setTags] = useState<Tags[]>(outTags);
+
+  const [inputRemake, setInputRemake] = useState<string>('');
+
   const [info, setInfo] = useState({
     amount: 0,
     category: 'out',
@@ -78,35 +82,35 @@ const Add: React.FC = () => {
 
     <Layout>
       <Top>
-        <div className={category === 'out' ? 'selected' : ''} onClick={() => {
-          setCategory('out');
-          if (!(info.category === 'out')) {
-            setInfo({
-              amount: 0,
-              category: 'out',
-              remake: '',
-              tag: '',
-              tagId: -1,
-              createTime: ''
-            });
-          }
-          setTags(outTags);
-        }}>支出
+        <div className={category === 'out' ? 'selected' : ''}
+             onClick={() => {
+               setCategory('out');
+               if (!(info.category === 'out')) {
+                 setInfo({
+                   ...info,
+                   category: 'out',
+                   remake: '',
+                   tag: '',
+                   tagId: -1,
+                 });
+               }
+               setTags(outTags);
+             }}>支出
         </div>
-        <div className={category === 'in' ? 'selected' : ''} onClick={() => {
-          setCategory('in');
-          if (!(info.category === 'in')) {
-            setInfo({
-              amount: 0,
-              category: 'in',
-              remake: '',
-              tag: '',
-              tagId: -1,
-              createTime: ''
-            });
-          }
-          setTags(inTags);
-        }}>收入
+        <div className={category === 'in' ? 'selected' : ''}
+             onClick={() => {
+               setCategory('in');
+               if (!(info.category === 'in')) {
+                 setInfo({
+                   ...info,
+                   category: 'in',
+                   remake: '',
+                   tag: '',
+                   tagId: -1,
+                 });
+               }
+               setTags(inTags);
+             }}>收入
         </div>
         <Link to="/" className="close">取消</Link>
       </Top>
@@ -126,11 +130,20 @@ const Add: React.FC = () => {
       </Content>
       <Bottom>
         <InputPad amount={info.amount}
-                  setAmount={(amount)=>{
+                  inputRemake={inputRemake}
+                  setAmount={(amount) => {
                     setInfo({
                       ...info,
                       amount: amount
                     });
+                  }}
+                  setRemake={(remake) => {
+                    setInputRemake(remake);
+                  }}
+                  done={() => {
+                    console.log(info);
+                    console.log(inputRemake);
+                    console.log('点击了完成');
                   }}/>
       </Bottom>
     </Layout>

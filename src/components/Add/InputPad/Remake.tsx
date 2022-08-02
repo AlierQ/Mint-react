@@ -29,14 +29,21 @@ const Content = styled.div`
   }
 `;
 
-const Remake: React.FC = () => {
-  const [remake, setRemake] = useState<string>('');
+type Props = {
+  inputRemake: string
+  setRemake: (remake: string) => void
+}
+
+const Remake: React.FC<Props> = (props) => {
+  const [remake] = useState<string>('');
 
   const refInput = useRef<HTMLInputElement>(null);
 
   const onBlur = () => {
-    if (refInput.current !== null)
-      console.log(refInput.current.value);
+    if (refInput.current !== null){
+      props.setRemake(refInput.current.value)
+    }
+
   };
   return (
     <Content>

@@ -15,6 +15,9 @@ const Wrapper = styled.div`
 type Props = {
   amount: number
   setAmount: (amount: number) => void
+  inputRemake: string
+  setRemake: (remake: string) => void
+  done: () => void
 }
 
 const InputPad: React.FC<Props> = (props) => {
@@ -22,13 +25,16 @@ const InputPad: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <OutPad outNumber={outNumber}/>
-      <Remake/>
+      <Remake inputRemake={props.inputRemake}
+              setRemake={props.setRemake}
+      />
       <Pad
         outNumber={outNumber}
         setNumber={(number) => {
           setOutNumber(number);
         }}
-        setAmount={props.setAmount}/>
+        setAmount={props.setAmount}
+        done={props.done}/>
     </Wrapper>
   );
 };

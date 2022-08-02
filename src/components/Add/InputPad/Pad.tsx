@@ -47,6 +47,7 @@ type Props = {
   outNumber: string
   setNumber: (number: string) => void
   setAmount: (amount: number) => void
+  done: () => void
 }
 
 const Pad: React.FC<Props> = (props) => {
@@ -157,6 +158,7 @@ const Pad: React.FC<Props> = (props) => {
           }
           <td className="characters done" rowSpan={2}
               onClick={() => {
+                props.done()
               }}
           >完成
           </td>
