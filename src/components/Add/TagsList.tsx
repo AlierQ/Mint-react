@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import Icon from 'components/Icon';
 import DynamicList from 'components/Add/TagsList/DynamicList';
+import React from 'react';
 
 const List = styled.div`
   display: flex;
@@ -50,11 +51,31 @@ const List = styled.div`
   }
 `;
 
-const TagsList = () => {
+type Props = {
+  tag: string
+  tagId: number
+  remake: string
+  onChange: (
+    tag: string,
+    tagId: number,
+    remake: string,
+  ) => void
+  tags: {
+    id: number
+    className: string
+    remake: string
+  }[]
+}
+
+const TagsList: React.FC<Props> = (props) => {
   return (
     <List>
       <ul>
-        <DynamicList/>
+        <DynamicList tag={props.tag}
+                     tagId={props.tagId}
+                     remake={props.remake}
+                     onChange={props.onChange}
+                     tags={props.tags}/>
         <li>
           <Link to="/label" className="one-icon">
             <Icon name="setting" color="#545353" size="32"/>

@@ -40,26 +40,94 @@ const Top = styled.div`
 const Content = styled.div``;
 const Bottom = styled.div``;
 
+const outTags = [
+  {className: 'catering', remake: '餐饮', id: 1},
+  {className: 'shopping', remake: '购物', id: 2},
+  {className: 'dayuse', remake: '日用', id: 3},
+  {className: 'traffic', remake: '交通', id: 4},
+  {className: 'sport', remake: '运动', id: 5},
+  {className: 'pet', remake: '宠物', id: 6},
+  {className: 'recreation', remake: '娱乐', id: 7},
+];
+
+const inTags = [
+  {className: 'parttime', remake: '兼职', id: 1},
+  {className: 'wage', remake: '工资', id: 2},
+  {className: 'licai', remake: '理财', id: 3},
+  {className: 'otherrevenue', remake: '其他', id: 4},
+];
+
+type Tags = {
+  id: number
+  className: string
+  remake: string
+}
+
 const Add: React.FC = () => {
   const [category, setCategory] = useState<string>('out');
+  const [tags, setTags] = useState<Tags[]>(outTags);
+
+  const [info, setInfo] = useState({
+    amount: 0,
+    category: 'out',
+    remake: '',
+    tag: '',
+    tagId: -1,
+    createTime: ''
+  });
   return (
 
     <Layout>
       <Top>
         <div className={category === 'out' ? 'selected' : ''} onClick={() => {
           setCategory('out');
+          if (!(info.category === 'out')) {
+            setInfo({
+              amount: 0,
+              category: 'out',
+              remake: '',
+              tag: '',
+              tagId: -1,
+              createTime: ''
+            });
+          }
+          setTags(outTags);
         }}>支出
         </div>
         <div className={category === 'in' ? 'selected' : ''} onClick={() => {
           setCategory('in');
+          if (!(info.category === 'in')) {
+            setInfo({
+              amount: 0,
+              category: 'in',
+              remake: '',
+              tag: '',
+              tagId: -1,
+              createTime: ''
+            });
+          }
+          setTags(inTags);
         }}>收入
         </div>
         <Link to="/" className="close">取消</Link>
       </Top>
       <Content>
-        <TagsList/>
+        <TagsList tag={info.tag}
+                  tagId={info.tagId}
+                  remake={info.remake}
+                  tags={tags}
+                  onChange={(tag, tagId, remake) => {
+                    setInfo({
+                      ...info,
+                      tag: tag,
+                      tagId: tagId,
+                      remake: remake,
+                    });
+                  }}/>
       </Content>
-      <Bottom><InputPad/></Bottom>
+      <Bottom>
+        <InputPad amount={info.amount}/>
+      </Bottom>
     </Layout>
   );
 };

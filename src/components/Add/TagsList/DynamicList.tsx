@@ -1,45 +1,45 @@
 import Icon from '../../Icon';
 import React, {useState} from 'react';
 
-const out = [
-  {className: 'catering', remake: '餐饮', id: 1},
-  {className: 'shopping', remake: '购物', id: 2},
-  {className: 'dayuse', remake: '日用', id: 3},
-  {className: 'traffic', remake: '交通', id: 4},
-  {className: 'sport', remake: '运动', id: 5},
-  {className: 'pet', remake: '宠物', id: 6},
-  {className: 'recreation', remake: '娱乐', id: 7},
-];
-
-// 自定义标签ts类型
-type Tags = {
-  id: number
-  className: string
+type Props = {
+  tag: string
+  tagId: number
   remake: string
+  onChange: (
+    tag: string,
+    tagId: number,
+    remake: string,
+  ) => void
+  tags: {
+    id: number
+    className: string
+    remake: string
+  }[]
 }
 
-const DynamicList: React.FC = () => {
-  const [tags, setTags] = useState<Tags[]>(out);
+const DynamicList: React.FC<Props> = (props) => {
   // 选中标签 id
-  const [selectedTagsID, setSelectedTagsID] = useState<number>(-1);
+  const [selectedTags, setSelectedTags] = useState<{ id: number, className: string }>({id: -1, className: ''});
   // 选中 id 点击事件
-  const onSelectTag = (id: number) => {
-    setSelectedTagsID(id);
+  const onSelectTag = (id: number, className: string) => {
+    setSelectedTags({id, className});
   };
   // 选中设置样式
-  const getSelectedCss = (id: number) => {
-    return selectedTagsID === id ? 'selected' : undefined;
+  const getSelectedCss = (id: number, className: string) => {
+
+    return (selectedTags.id === id && selectedTags.className === className) ? 'selected' : undefined;
   };
   return (
     <>
-      {tags.map((item) => {
+      {props.tags.map((item) => {
         return (
           <li key={item.id} onClick={
             () => {
-              onSelectTag(item.id);
+              props.onChange(item.className, item.id, item.remake);
+              onSelectTag(item.id, item.className);
             }
           }>
-            <div className={'one-icon ' + getSelectedCss(item.id)}>
+            <div className={'one-icon ' + getSelectedCss(item.id, item.className)}>
               <Icon name={item.className} color="#545353" size="32"/>
             </div>
             <div className="label">{item.remake}</div>
