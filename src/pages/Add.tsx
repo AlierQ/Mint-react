@@ -64,52 +64,56 @@ type Tags = {
 }
 
 const Add: React.FC = () => {
-  const [category, setCategory] = useState<string>('out');
-
-  const [tags, setTags] = useState<Tags[]>(outTags);
-
-  const [inputRemake, setInputRemake] = useState<string>('');
-
-  const [info, setInfo] = useState({
+  const initInfo = {
     amount: 0,
     category: 'out',
     remake: '',
     tag: '',
     tagId: -1,
     createTime: ''
-  });
+  };
+
+  const [category, setCategory] = useState<string>('out');
+
+  const [tags, setTags] = useState<Tags[]>(outTags);
+
+  const [inputRemake, setInputRemake] = useState<string>('');
+
+  const [info, setInfo] = useState(initInfo);
+
+  const onChange = (obj: Partial<typeof info>) => {
+    setInfo({
+      ...info,
+      ...obj
+    });
+  };
+
+  // 切换收入支出
+  const toggleCategory = (category: string) => {
+    setCategory(category);
+    if (!(info.category === category)) {
+      onChange({...initInfo, category: category});
+    }
+    if (category === 'out') {
+      setTags(outTags);
+    } else {
+      setTags(inTags);
+    }
+
+  };
+
   return (
 
     <Layout>
       <Top>
         <div className={category === 'out' ? 'selected' : ''}
              onClick={() => {
-               setCategory('out');
-               if (!(info.category === 'out')) {
-                 setInfo({
-                   ...info,
-                   category: 'out',
-                   remake: '',
-                   tag: '',
-                   tagId: -1,
-                 });
-               }
-               setTags(outTags);
+               toggleCategory('out');
              }}>支出
         </div>
         <div className={category === 'in' ? 'selected' : ''}
              onClick={() => {
-               setCategory('in');
-               if (!(info.category === 'in')) {
-                 setInfo({
-                   ...info,
-                   category: 'in',
-                   remake: '',
-                   tag: '',
-                   tagId: -1,
-                 });
-               }
-               setTags(inTags);
+               toggleCategory('in');
              }}>收入
         </div>
         <Link to="/" className="close">取消</Link>
@@ -120,22 +124,14 @@ const Add: React.FC = () => {
                   remake={info.remake}
                   tags={tags}
                   setTagInfo={(tag, tagId, remake) => {
-                    setInfo({
-                      ...info,
-                      tag: tag,
-                      tagId: tagId,
-                      remake: remake,
-                    });
+                    onChange({tag, tagId, remake});
                   }}/>
       </Content>
       <Bottom>
         <InputPad amount={info.amount}
                   inputRemake={inputRemake}
                   setAmount={(amount) => {
-                    setInfo({
-                      ...info,
-                      amount: amount
-                    });
+                    onChange({amount});
                   }}
                   setRemake={(remake) => {
                     setInputRemake(remake);
