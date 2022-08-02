@@ -57,7 +57,17 @@ const Top = styled.div`
   }
 `;
 const Content = styled.div``;
-const Bottom = styled.div``;
+const Bottom = styled.div`
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > div {
+    font-size: 20px;
+  }
+`;
 
 const Tags = () => {
   const [category, setCategory] = useState<string>('out');
@@ -93,8 +103,12 @@ const Tags = () => {
           </div>
         </div>
       </Top>
-      <Content></Content>
-      <Bottom></Bottom>
+      <Content>
+
+      </Content>
+      <Bottom>
+        <div>+添加标签</div>
+      </Bottom>
     </Layout>
   )
     ;
