@@ -66,7 +66,6 @@ type Tags = {
 const Add: React.FC = () => {
   const [category, setCategory] = useState<string>('out');
   const [tags, setTags] = useState<Tags[]>(outTags);
-
   const [info, setInfo] = useState({
     amount: 0,
     category: 'out',
@@ -116,7 +115,7 @@ const Add: React.FC = () => {
                   tagId={info.tagId}
                   remake={info.remake}
                   tags={tags}
-                  onChange={(tag, tagId, remake) => {
+                  setTagInfo={(tag, tagId, remake) => {
                     setInfo({
                       ...info,
                       tag: tag,

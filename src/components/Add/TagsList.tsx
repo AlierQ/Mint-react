@@ -55,7 +55,7 @@ type Props = {
   tag: string
   tagId: number
   remake: string
-  onChange: (
+  setTagInfo: (
     tag: string,
     tagId: number,
     remake: string,
@@ -74,7 +74,7 @@ const TagsList: React.FC<Props> = (props) => {
         <DynamicList tag={props.tag}
                      tagId={props.tagId}
                      remake={props.remake}
-                     onChange={props.onChange}
+                     setTagInfo={props.setTagInfo}
                      tags={props.tags}/>
         <li>
           <Link to="/label" className="one-icon">

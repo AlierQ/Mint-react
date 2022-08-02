@@ -1,11 +1,11 @@
 import Icon from '../../Icon';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 type Props = {
   tag: string
   tagId: number
   remake: string
-  onChange: (
+  setTagInfo: (
     tag: string,
     tagId: number,
     remake: string,
@@ -24,9 +24,13 @@ const DynamicList: React.FC<Props> = (props) => {
   const onSelectTag = (id: number, className: string) => {
     setSelectedTags({id, className});
   };
+
+  useEffect(() => {
+    setSelectedTags({id: -1, className: ''});
+  }, [props.tags]);
+
   // 选中设置样式
   const getSelectedCss = (id: number, className: string) => {
-
     return (selectedTags.id === id && selectedTags.className === className) ? 'selected' : undefined;
   };
   return (
@@ -35,7 +39,7 @@ const DynamicList: React.FC<Props> = (props) => {
         return (
           <li key={item.id} onClick={
             () => {
-              props.onChange(item.className, item.id, item.remake);
+              props.setTagInfo(item.className, item.id, item.remake);
               onSelectTag(item.id, item.className);
             }
           }>
