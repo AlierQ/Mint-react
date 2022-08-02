@@ -4,6 +4,7 @@ import Add from 'pages/Add';
 import Detail from 'pages/Detail';
 import Statistics from 'pages/Statistics';
 import NotFound from 'pages/NotFound';
+import Tags from 'pages/Tags';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path="/" element={<Detail/>}/>
       <Route path="/add" element={<Add/>}/>
       <Route path="/statistics" element={<Statistics/>}/>
+      <Route path="/tags" element={<Tags/>}/>
 
       <Route path="*" element={<NotFound/>}/>
     </Routes>

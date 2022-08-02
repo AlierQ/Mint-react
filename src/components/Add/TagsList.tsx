@@ -77,7 +77,7 @@ const TagsList: React.FC<Props> = (props) => {
                      setTagInfo={props.setTagInfo}
                      tags={props.tags}/>
         <li>
-          <Link to="/label" className="one-icon">
+          <Link to="/tags" className="one-icon">
             <Icon name="setting" color="#545353" size="32"/>
           </Link>
           <div className="label">设置</div>
