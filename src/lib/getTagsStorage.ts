@@ -1,6 +1,6 @@
 const getTagsStorage = (key: string) => {
   if (key === 'inTags') {
-    if (window.localStorage.getItem(key) !== null) {
+    if (window.localStorage.getItem(key) === null) {
       return [
         {className: 'parttime', remake: '兼职', id: 1},
         {className: 'wage', remake: '工资', id: 2},
@@ -11,7 +11,7 @@ const getTagsStorage = (key: string) => {
       return JSON.parse(window.localStorage.getItem(key) as string);
     }
   } else if (key === 'outTags') {
-    if (window.localStorage.getItem(key) !== null) {
+    if (window.localStorage.getItem(key) === null) {
       return [
         {className: 'catering', remake: '餐饮', id: 1},
         {className: 'shopping', remake: '购物', id: 2},
