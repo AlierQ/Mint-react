@@ -14,7 +14,7 @@ function App() {
       <Route path="/add" element={<Add/>}/>
       <Route path="/statistics" element={<Statistics/>}/>
       <Route path="/tags" element={<Tags/>}/>
-      <Route path="/tagsadd" element={<TagsAdd/>}/>
+      <Route path="/tagsadd/:category" element={<TagsAdd/>}/>
 
       <Route path="*" element={<NotFound/>}/>
     </Routes>

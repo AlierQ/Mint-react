@@ -139,7 +139,7 @@ const Tags: React.FC = () => {
                       }}/>
       </Content>
       <Bottom>
-        <Link to="/tagsadd">
+        <Link to={"/tagsadd/" + category} >
           <div>+添加标签</div>
         </Link>
       </Bottom>
