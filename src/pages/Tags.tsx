@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import Icon from 'components/Icon';
 import React, {useState} from 'react';
-import TagsEditList from '../components/Tags/TagsEditList';
+import TagsEditList from 'components/Tags/TagsEditList';
+import useTags from 'useTags';
 
 const Top = styled.div`
   height: 130px;
@@ -75,23 +76,6 @@ const Bottom = styled.div`
   }
 `;
 
-const outTags = [
-  {className: 'catering', remake: '餐饮', id: 1},
-  {className: 'shopping', remake: '购物', id: 2},
-  {className: 'dayuse', remake: '日用', id: 3},
-  {className: 'traffic', remake: '交通', id: 4},
-  {className: 'sport', remake: '运动', id: 5},
-  {className: 'pet', remake: '宠物', id: 6},
-  {className: 'recreation', remake: '娱乐', id: 7},
-];
-
-const inTags = [
-  {className: 'parttime', remake: '兼职', id: 1},
-  {className: 'wage', remake: '工资', id: 2},
-  {className: 'licai', remake: '理财', id: 3},
-  {className: 'otherrevenue', remake: '其他', id: 4},
-];
-
 type TagsType = {
   id: number
   className: string
@@ -99,16 +83,18 @@ type TagsType = {
 }
 
 const Tags: React.FC = () => {
+  const {tagsData, setTagsData} = useTags();
+
   const [category, setCategory] = useState<string>('out');
 
-  const [tags, setTags] = useState<TagsType[]>(outTags);
+  const [tags, setTags] = useState<TagsType[]>(tagsData('out'));
 
   const toggleCategory = (category: string) => {
     setCategory(category);
     if (category === 'out') {
-      setTags(outTags);
+      setTags(tagsData('out'));
     } else {
-      setTags(inTags);
+      setTags(tagsData('in'));
     }
   };
   return (
@@ -143,10 +129,13 @@ const Tags: React.FC = () => {
       <Content>
         <TagsEditList tags={tags}
                       deleteTag={(id: number, className: string) => {
-                        setTags(tags.filter((item) => {
+                        const temp = tags.filter((item) => {
                           return item.id !== id || item.className !== className;
-                        }));
-                        console.log(id, className);
+                        });
+                        // 保证UI更新
+                        setTags(temp);
+                        // 保证localstorage中的数据更新
+                        setTagsData(category, temp);
                       }}/>
       </Content>
       <Bottom>
