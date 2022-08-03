@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Icon from 'components/Icon';
-import React from 'react';
+import React, {useRef} from 'react';
 
 const Wrapper = styled.div`
   border: 1px solid #eeeeee;
@@ -35,21 +35,24 @@ const Wrapper = styled.div`
 
 type Props = {
   iconRemake: string
+  selectedIcon: string
   setRemake: (remake: string) => void
 }
 
 const TagsAddInput: React.FC<Props> = (props) => {
+  const refInput = useRef<HTMLInputElement>(null);
   return (
     <Wrapper>
       <div className="icon-show">
-        <Icon name="shopping" color="#545353" size="28"/>
+        <Icon name={props.selectedIcon} color="#545353" size="28"/>
       </div>
       <div className="input">
         <input type="text" placeholder="请输入类别名称（不超过4个汉字）"
-               value={props.iconRemake}
-               onChange={(e) => {
-                 if (e.target.value.length<=4)
-                  props.setRemake(e.target.value);
+               defaultValue={props.iconRemake}
+               ref={refInput}
+               onBlur={(e) => {
+                 if (refInput.current !== null)
+                   props.setRemake(refInput.current.value);
                }}/>
       </div>
     </Wrapper>

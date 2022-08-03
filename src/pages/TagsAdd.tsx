@@ -94,6 +94,7 @@ type TagsAddListType = {
 const TagsAdd = () => {
   const [tagsAddList, setTagsAddList] = useState<TagsAddListType[]>(TagsAddList);
   const [iconRemake, setIconRemake] = useState<string>('');
+  const [selectedIcon, setSelectedIcon] = useState<string>('shopping')
   return (
     <Layout>
       <Top>
@@ -113,11 +114,17 @@ const TagsAdd = () => {
       <Content>
         <TagsAddInput
           iconRemake={iconRemake}
+          selectedIcon={selectedIcon}
           setRemake={(remake: string) => {
             setIconRemake(remake);
           }}
         />
-        <TagsAddIconList tagsAddList={tagsAddList}/>
+        <TagsAddIconList
+          tagsAddList={tagsAddList}
+          setSelected={(selectedIcon:string)=>{
+            setSelectedIcon(selectedIcon)
+          }}
+        />
       </Content>
       <Bottom>
       </Bottom>
