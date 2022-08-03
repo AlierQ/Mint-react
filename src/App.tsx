@@ -5,6 +5,7 @@ import Detail from 'pages/Detail';
 import Statistics from 'pages/Statistics';
 import NotFound from 'pages/NotFound';
 import Tags from 'pages/Tags';
+import TagsAdd from 'pages/TagsAdd';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/add" element={<Add/>}/>
       <Route path="/statistics" element={<Statistics/>}/>
       <Route path="/tags" element={<Tags/>}/>
+      <Route path="/tagsadd" element={<TagsAdd/>}/>
 
       <Route path="*" element={<NotFound/>}/>
     </Routes>

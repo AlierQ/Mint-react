@@ -70,7 +70,7 @@ const Bottom = styled.div`
   justify-content: center;
   align-items: center;
 
-  > div {
+  div {
     font-size: 20px;
   }
 `;
@@ -150,7 +150,9 @@ const Tags: React.FC = () => {
                       }}/>
       </Content>
       <Bottom>
-        <div>+添加标签</div>
+        <Link to="/tagsadd">
+          <div>+添加标签</div>
+        </Link>
       </Bottom>
     </Layout>
   );
