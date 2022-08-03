@@ -3,6 +3,7 @@ import getRecordStorage from 'lib/getRecordStorage';
 
 type Record = {
   tag: string
+  tagId:number
   category: string
   remake: string
   amount: number
