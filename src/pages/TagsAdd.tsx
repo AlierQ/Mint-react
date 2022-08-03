@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import {useState} from 'react';
 import TagsAddInput from '../components/TagsAdd/TagsAddInput';
 import TagsAddIconList from '../components/TagsAdd/TagsAddIconList';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
+import useTags from 'useTags';
+import createId from 'lib/createId';
+
 
 const Top = styled.div`
   height: 10vh;
@@ -103,9 +106,16 @@ type TagsAddListType = {
 }
 
 const TagsAdd = () => {
-  const [tagsAddList, setTagsAddList] = useState<TagsAddListType[]>(TagsAddList);
+  const {tagsData, setTagsData} = useTags();
+
+  let {category} = useParams();
+
+  const [tagsAddList] = useState<TagsAddListType[]>(TagsAddList);
+
   const [iconRemake, setIconRemake] = useState<string>('');
+
   const [selectedIcon, setSelectedIcon] = useState<string>('shopping');
+
   let navigate = useNavigate();
   const doneAdd = () => {
     if (iconRemake === '') {
@@ -114,8 +124,15 @@ const TagsAdd = () => {
       if (iconRemake.length > 4) {
         alert('类别名太长！');
       } else {
-        console.log(selectedIcon, iconRemake);
-        navigate('/add');
+        setTagsData(category as string,
+          [
+            ...tagsData(category as string),
+            {className: selectedIcon, remake: iconRemake, id: createId(category) as number}
+          ]);
+        // 为了在setTagsData异步之后紧接着执行
+        setTimeout(() => {
+          navigate('/tags');
+        }, 0);
       }
     }
   };

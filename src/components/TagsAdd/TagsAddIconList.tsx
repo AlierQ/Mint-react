@@ -1,8 +1,6 @@
 import Icon from '../Icon';
 import styled from 'styled-components';
 import React from 'react';
-import icon from '../Icon';
-
 
 const Wrapper = styled.div`
   flex-grow: 1;
@@ -45,7 +43,7 @@ type Props = {
     title: string
     icons: string[]
   }[]
-  setSelected: (selectedIcon:string) => void
+  setSelected: (selectedIcon: string) => void
 }
 
 
@@ -62,8 +60,8 @@ const TagsAddIconList: React.FC<Props> = (props) => {
                   item.icons.map((className) => {
                     return (
                       <li key={className}>
-                        <div className="one-icon" onClick={()=>{
-                          props.setSelected(className)
+                        <div className="one-icon" onClick={() => {
+                          props.setSelected(className);
                         }}>
                           <Icon name={className} color="#545353" size="28"/>
                         </div>
