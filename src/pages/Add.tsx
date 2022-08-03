@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import React, {useState} from 'react';
 import useTags from 'useTags';
 import useRecord from 'useRecord';
+import dayjs from 'dayjs';
 
 const Top = styled.div`
   height: 80px;
@@ -135,6 +136,7 @@ const Add: React.FC = () => {
                         if (inputRemake !== '') {
                           info.remake = inputRemake;
                         }
+                        info.createTime = dayjs().toISOString();
                         setRecord([
                           ...record,
                           info
