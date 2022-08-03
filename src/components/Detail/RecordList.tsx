@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Icon from 'components/Icon';
+import React from 'react';
 
 const Wrapper = styled.div`
   display: flex;
@@ -52,33 +53,65 @@ const Wrapper = styled.div`
     }
   }
 `;
+type Record = {
+  tag: string
+  tagId: number
+  category: string
+  remake: string
+  amount: number
+  createTime: string
+}
 
-const RecordList = () => {
+type RecordGroup = {
+  inSum?: number
+  outSum?: number
+  title: string
+  items: Record[]
+}
+type Props = {
+  recordData: RecordGroup[]
+}
+
+const RecordList: React.FC<Props> = (props) => {
   return (
     <Wrapper>
-      <div>
-        <div className="recordDate">
-          <div>08月03日 星期三</div>
-          <div>
-            {'收入：1111'}&nbsp;&nbsp;{'支出：' + 1111}
-          </div>
-        </div>
-        <ul>
-          <li>
-            <div className="record">
-              <div className="icon-container">
-                <Icon name="shopping" color="#545353" size="22"/>
+      {
+        props.recordData.map((group) => {
+          return (
+            <div key={group.title}>
+              <div className="recordDate">
+                <div>{group.title}</div>
+                <div>
+                  {group.inSum !== 0 ? '收入：' + group.inSum : ''}
+                  &nbsp;&nbsp;
+                  {group.outSum !== 0 ? '支出：' + group.outSum : ''}
+                </div>
               </div>
-              <div className="remark">
-                买东西
-              </div>
-              <div className="money-number">
-                - 100
-              </div>
+              <ul>
+                {
+                  group.items.map((item, index) => {
+                    return (
+                      <li key={index}>
+                        <div className="record">
+                          <div className="icon-container">
+                            <Icon name={item.tag} color="#545353" size="22"/>
+                          </div>
+                          <div className="remark">
+                            {item.remake}
+                          </div>
+                          <div className="money-number">
+                            {(item.category === 'in' ? '+' : '-') + item.amount}
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })
+                }
+              </ul>
             </div>
-          </li>
-        </ul>
-      </div>
+          );
+        })
+      }
     </Wrapper>
   );
 };
