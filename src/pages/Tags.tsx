@@ -2,7 +2,8 @@ import Layout from 'components/Layout';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import Icon from 'components/Icon';
-import {useState} from 'react';
+import React, {useState} from 'react';
+import TagsEditList from '../components/Tags/TagsEditList';
 
 const Top = styled.div`
   height: 130px;
@@ -20,9 +21,14 @@ const Top = styled.div`
       position: absolute;
       padding-top: 5px;
       left: 15px;
+      display: flex;
+      align-items: center;
 
       span {
+        line-height: 24px;
+        vertical-align: baseline;
         font-size: 18px;
+        margin-left: 4px;
       }
     }
 
@@ -69,10 +75,41 @@ const Bottom = styled.div`
   }
 `;
 
-const Tags = () => {
+const outTags = [
+  {className: 'catering', remake: '餐饮', id: 1},
+  {className: 'shopping', remake: '购物', id: 2},
+  {className: 'dayuse', remake: '日用', id: 3},
+  {className: 'traffic', remake: '交通', id: 4},
+  {className: 'sport', remake: '运动', id: 5},
+  {className: 'pet', remake: '宠物', id: 6},
+  {className: 'recreation', remake: '娱乐', id: 7},
+];
+
+const inTags = [
+  {className: 'parttime', remake: '兼职', id: 1},
+  {className: 'wage', remake: '工资', id: 2},
+  {className: 'licai', remake: '理财', id: 3},
+  {className: 'otherrevenue', remake: '其他', id: 4},
+];
+
+type TagsType = {
+  id: number
+  className: string
+  remake: string
+}
+
+const Tags: React.FC = () => {
   const [category, setCategory] = useState<string>('out');
+
+  const [tags, setTags] = useState<TagsType[]>(outTags);
+
   const toggleCategory = (category: string) => {
     setCategory(category);
+    if (category === 'out') {
+      setTags(outTags);
+    } else {
+      setTags(inTags);
+    }
   };
   return (
     <Layout>
@@ -104,14 +141,19 @@ const Tags = () => {
         </div>
       </Top>
       <Content>
-
+        <TagsEditList tags={tags}
+                      deleteTag={(id: number, className: string) => {
+                        setTags(tags.filter((item) => {
+                          return item.id !== id || item.className !== className;
+                        }));
+                        console.log(id, className);
+                      }}/>
       </Content>
       <Bottom>
         <div>+添加标签</div>
       </Bottom>
     </Layout>
-  )
-    ;
+  );
 };
 
 export default Tags;
