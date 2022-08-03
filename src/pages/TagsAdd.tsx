@@ -94,7 +94,18 @@ type TagsAddListType = {
 const TagsAdd = () => {
   const [tagsAddList, setTagsAddList] = useState<TagsAddListType[]>(TagsAddList);
   const [iconRemake, setIconRemake] = useState<string>('');
-  const [selectedIcon, setSelectedIcon] = useState<string>('shopping')
+  const [selectedIcon, setSelectedIcon] = useState<string>('shopping');
+  const doneAdd = () => {
+    if (iconRemake === '') {
+      alert('请输入类别名！');
+    } else {
+      if (iconRemake.length>4){
+        alert('类别名太长！');
+      }else{
+        console.log(selectedIcon, iconRemake);
+      }
+    }
+  };
   return (
     <Layout>
       <Top>
@@ -107,7 +118,9 @@ const TagsAdd = () => {
         <div className="title">
           添加类别
         </div>
-        <div className="done">
+        <div className="done" onClick={() => {
+          doneAdd();
+        }}>
           完成
         </div>
       </Top>
@@ -121,8 +134,8 @@ const TagsAdd = () => {
         />
         <TagsAddIconList
           tagsAddList={tagsAddList}
-          setSelected={(selectedIcon:string)=>{
-            setSelectedIcon(selectedIcon)
+          setSelected={(selectedIcon: string) => {
+            setSelectedIcon(selectedIcon);
           }}
         />
       </Content>
