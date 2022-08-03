@@ -33,14 +33,24 @@ const Wrapper = styled.div`
   }
 `;
 
-const TagsAddInput:React.FC = () => {
+type Props = {
+  iconRemake: string
+  setRemake: (remake: string) => void
+}
+
+const TagsAddInput: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <div className="icon-show">
         <Icon name="shopping" color="#545353" size="28"/>
       </div>
       <div className="input">
-        <input type="text" placeholder="请输入类别名称（不超过4个汉字）"/>
+        <input type="text" placeholder="请输入类别名称（不超过4个汉字）"
+               value={props.iconRemake}
+               onChange={(e) => {
+                 if (e.target.value.length<=4)
+                  props.setRemake(e.target.value);
+               }}/>
       </div>
     </Wrapper>
   );

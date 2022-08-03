@@ -93,7 +93,7 @@ type TagsAddListType = {
 
 const TagsAdd = () => {
   const [tagsAddList, setTagsAddList] = useState<TagsAddListType[]>(TagsAddList);
-
+  const [iconRemake, setIconRemake] = useState<string>('');
   return (
     <Layout>
       <Top>
@@ -111,7 +111,12 @@ const TagsAdd = () => {
         </div>
       </Top>
       <Content>
-        <TagsAddInput/>
+        <TagsAddInput
+          iconRemake={iconRemake}
+          setRemake={(remake: string) => {
+            setIconRemake(remake);
+          }}
+        />
         <TagsAddIconList tagsAddList={tagsAddList}/>
       </Content>
       <Bottom>
