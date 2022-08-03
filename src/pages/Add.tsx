@@ -2,7 +2,7 @@ import Layout from 'components/Layout';
 import InputPad from 'components/Add/InputPad';
 import TagsList from 'components/Add/TagsList';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import React, {useState} from 'react';
 import useTags from 'useTags';
 import useRecord from 'useRecord';
@@ -51,6 +51,8 @@ type Tags = {
 
 const Add: React.FC = () => {
   const {record, setRecord} = useRecord();
+
+  let navigate = useNavigate();
 
   const {tagsData} = useTags();
 
@@ -141,6 +143,9 @@ const Add: React.FC = () => {
                           ...record,
                           info
                         ]);
+                        setTimeout(() => {
+                          navigate('/');
+                        }, 0);
                       }
                     }
                   }}/>
