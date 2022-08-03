@@ -2,6 +2,7 @@ import Layout from 'components/Layout';
 import Icon from 'components/Icon';
 import styled from 'styled-components';
 import {useState} from 'react';
+import TagsAddInput from '../components/TagsAdd/TagsAddInput';
 
 const Top = styled.div`
   height: 10vh;
@@ -31,37 +32,6 @@ const Content = styled.div`
   height: 90vh;
   display: flex;
   flex-direction: column;
-
-  .notes-input {
-    border: 1px solid #eeeeee;
-    display: flex;
-    align-items: center;
-
-    .icon-show {
-      margin: 10px 0 10px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: #79c79f;
-    }
-
-    .input {
-      flex-grow: 1;
-      margin-right: 20px;
-
-      input {
-        width: 100%;
-        height: 45px;
-        outline: 0;
-        border: none;
-        text-indent: 10px;
-        font-size: 16px;
-      }
-    }
-  }
 
   .icon-list {
     flex-grow: 1;
@@ -176,14 +146,7 @@ const TagsAdd = () => {
         </div>
       </Top>
       <Content>
-        <div className="notes-input">
-          <div className="icon-show">
-            <Icon name="shopping" color="#545353" size="28"/>
-          </div>
-          <div className="input">
-            <input type="text" placeholder="请输入类别名称（不超过4个汉字）"/>
-          </div>
-        </div>
+        <TagsAddInput/>
         <div className="icon-list">
           {
             tagsAddList.map((item) => {
