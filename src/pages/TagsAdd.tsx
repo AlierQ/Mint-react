@@ -18,6 +18,16 @@ const Top = styled.div`
     display: flex;
     margin-left: 10px;
     font-size: 18px;
+    justify-content: center;
+
+    .icon {
+      margin-top: 2px;
+    }
+
+    .backtext {
+      font-size: 18px;
+      margin-left: 2px;
+    }
   }
 
   .title {
@@ -113,11 +123,11 @@ const TagsAdd = () => {
     <Layout>
       <Top>
         <div className="back">
-          <div>
+          <div className="icon">
             <Icon name="back" color="#333333" size="18"/>
           </div>
           <Link to="/tags">
-            <div>返回</div>
+            <div className="backtext">返回</div>
           </Link>
         </div>
         <div className="title">
