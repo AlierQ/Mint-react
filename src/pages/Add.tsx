@@ -4,6 +4,7 @@ import TagsList from 'components/Add/TagsList';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import React, {useState} from 'react';
+import useTags from 'useTags';
 
 const Top = styled.div`
   height: 80px;
@@ -40,23 +41,6 @@ const Top = styled.div`
 const Content = styled.div``;
 const Bottom = styled.div``;
 
-const outTags = [
-  {className: 'catering', remake: '餐饮', id: 1},
-  {className: 'shopping', remake: '购物', id: 2},
-  {className: 'dayuse', remake: '日用', id: 3},
-  {className: 'traffic', remake: '交通', id: 4},
-  {className: 'sport', remake: '运动', id: 5},
-  {className: 'pet', remake: '宠物', id: 6},
-  {className: 'recreation', remake: '娱乐', id: 7},
-];
-
-const inTags = [
-  {className: 'parttime', remake: '兼职', id: 1},
-  {className: 'wage', remake: '工资', id: 2},
-  {className: 'licai', remake: '理财', id: 3},
-  {className: 'otherrevenue', remake: '其他', id: 4},
-];
-
 type Tags = {
   id: number
   className: string
@@ -64,6 +48,8 @@ type Tags = {
 }
 
 const Add: React.FC = () => {
+  const {tagsData} = useTags();
+
   const initInfo = {
     amount: 0,
     category: 'out',
@@ -75,7 +61,7 @@ const Add: React.FC = () => {
 
   const [category, setCategory] = useState<string>('out');
 
-  const [tags, setTags] = useState<Tags[]>(outTags);
+  const [tags, setTags] = useState<Tags[]>(tagsData('out'));
 
   const [inputRemake, setInputRemake] = useState<string>('');
 
@@ -95,9 +81,9 @@ const Add: React.FC = () => {
       onChange({...initInfo, category: category});
     }
     if (category === 'out') {
-      setTags(outTags);
+      setTags(tagsData('out'));
     } else {
-      setTags(inTags);
+      setTags(tagsData('in'));
     }
 
   };
