@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {useState} from 'react';
 import TagsAddInput from '../components/TagsAdd/TagsAddInput';
 import TagsAddIconList from '../components/TagsAdd/TagsAddIconList';
+import {Link, useNavigate} from 'react-router-dom';
 
 const Top = styled.div`
   height: 10vh;
@@ -95,14 +96,16 @@ const TagsAdd = () => {
   const [tagsAddList, setTagsAddList] = useState<TagsAddListType[]>(TagsAddList);
   const [iconRemake, setIconRemake] = useState<string>('');
   const [selectedIcon, setSelectedIcon] = useState<string>('shopping');
+  let navigate = useNavigate();
   const doneAdd = () => {
     if (iconRemake === '') {
       alert('请输入类别名！');
     } else {
-      if (iconRemake.length>4){
+      if (iconRemake.length > 4) {
         alert('类别名太长！');
-      }else{
+      } else {
         console.log(selectedIcon, iconRemake);
+        navigate('/add');
       }
     }
   };
@@ -113,7 +116,9 @@ const TagsAdd = () => {
           <div>
             <Icon name="back" color="#333333" size="18"/>
           </div>
-          <div>返回</div>
+          <Link to="/tags">
+            <div>返回</div>
+          </Link>
         </div>
         <div className="title">
           添加类别
