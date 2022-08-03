@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import React, {useState} from 'react';
 import useTags from 'useTags';
+import useRecord from 'useRecord';
 
 const Top = styled.div`
   height: 80px;
@@ -48,6 +49,8 @@ type Tags = {
 }
 
 const Add: React.FC = () => {
+  const {record, setRecord} = useRecord();
+
   const {tagsData} = useTags();
 
   const initInfo = {
@@ -78,7 +81,7 @@ const Add: React.FC = () => {
   const toggleCategory = (category: string) => {
     setCategory(category);
     if (!(info.category === category)) {
-      onChange({...initInfo, category: category});
+      onChange({...initInfo, amount: info.amount, category: category});
     }
     if (category === 'out') {
       setTags(tagsData('out'));
@@ -123,9 +126,21 @@ const Add: React.FC = () => {
                     setInputRemake(remake);
                   }}
                   done={() => {
-                    console.log(info);
-                    console.log(inputRemake);
-                    console.log('点击了完成');
+                    if (info.tagId === -1 && info.tag === '') {
+                      alert('请选择标签！');
+                    } else {
+                      if (info.amount === 0) {
+                        alert('清输入金额！');
+                      } else {
+                        if (inputRemake !== '') {
+                          info.remake = inputRemake;
+                        }
+                        setRecord([
+                          ...record,
+                          info
+                        ]);
+                      }
+                    }
                   }}/>
       </Bottom>
     </Layout>
