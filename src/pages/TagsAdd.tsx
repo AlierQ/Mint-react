@@ -3,6 +3,7 @@ import Icon from 'components/Icon';
 import styled from 'styled-components';
 import {useState} from 'react';
 import TagsAddInput from '../components/TagsAdd/TagsAddInput';
+import TagsAddIconList from '../components/TagsAdd/TagsAddIconList';
 
 const Top = styled.div`
   height: 10vh;
@@ -32,42 +33,6 @@ const Content = styled.div`
   height: 90vh;
   display: flex;
   flex-direction: column;
-
-  .icon-list {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
-
-    .icon-title {
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    ul {
-      margin-top: 5px;
-      margin-bottom: 10px;
-      width: 90vw;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 40px);
-      grid-column-gap: 34px;
-      grid-row-gap: 20px;
-      justify-content: center;
-
-      li {
-        > .one-icon {
-          border-radius: 50%;
-          background: #F5F5F5;
-          width: 40px;
-          height: 40px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-    }
-  }
 `;
 const Bottom = styled.div``;
 
@@ -147,30 +112,7 @@ const TagsAdd = () => {
       </Top>
       <Content>
         <TagsAddInput/>
-        <div className="icon-list">
-          {
-            tagsAddList.map((item) => {
-              return (
-                <div>
-                  <div className="icon-title">{item.title}</div>
-                  <ul>
-                    {
-                      item.icons.map((className) => {
-                        return (
-                          <li>
-                            <div className="one-icon">
-                              <Icon name={className} color="#545353" size="28"/>
-                            </div>
-                          </li>
-                        );
-                      })
-                    }
-                  </ul>
-                </div>
-              );
-            })
-          }
-        </div>
+        <TagsAddIconList tagsAddList={tagsAddList}/>
       </Content>
       <Bottom>
       </Bottom>
