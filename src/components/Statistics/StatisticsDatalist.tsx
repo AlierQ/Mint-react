@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Icon from 'components/Icon';
+import React from 'react';
+import toFixed from '../../lib/toFixed';
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,7 +34,7 @@ const Wrapper = styled.div`
           width: 36px;
           height: 36px;
           border-radius: 50%;
-          background: $color-basic;
+          background: #79c79f;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -51,37 +53,62 @@ const Wrapper = styled.div`
 
         .money-number {
           margin-right: 10px;
-          font-size: 18px;
+          font-size: 16px;
         }
       }
     }
   }
 `;
 
-const StatisticsDatalist = () => {
+type Props = {
+  groupData: {
+    sum?: number
+    title: string
+    items: {
+      tag: string
+      tagId: number
+      category: string
+      remake: string
+      amount: number
+      createTime: string
+    }[]
+  }[]
+}
+
+const StatisticsDatalist: React.FC<Props> = (props) => {
   return (
     <Wrapper>
-      <div>
-        <div className="recordDate">
-          <div>第一周</div>
-          <div>共计：15.00</div>
-        </div>
-        <ul>
-          <li>
-            <div className="record">
-              <div className="icon-container">
-                <Icon name="shopping" color="#545353" size="22"/>
+      {
+        props.groupData.map((group) => {
+          return (
+            <div key={group.title}>
+              <div className="recordDate">
+                <div>{group.title}</div>
+                <div>共计：{toFixed(group.sum as number, 2)}</div>
               </div>
-              <div className="remark">
-                这是备注
-              </div>
-              <div className="money-number">
-                - 100
-              </div>
+              <ul>
+                {
+                  group.items.map((item, index) => {
+                    return (
+                      <li key={index}>
+                        <div className="record">
+                          <div className="icon-container">
+                            <Icon name={item.tag} color="#545353" size="22"/>
+                          </div>
+                          <div className="remark">{item.remake}</div>
+                          <div className="money-number">
+                            {(item.category === 'out' ? '-' : '+') + item.amount}
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })
+                }
+              </ul>
             </div>
-          </li>
-        </ul>
-      </div>
+          );
+        })
+      }
     </Wrapper>
   );
 };
