@@ -7,7 +7,7 @@ const Top = styled.div``;
 const Content = styled.div``;
 const Bottom = styled.div``;
 
-const Detail = () => {
+const Statistics = () => {
   return (
     <Layout>
       <Top>
@@ -21,4 +21,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default Statistics;
