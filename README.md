@@ -2,9 +2,11 @@
 
 Mint 薄荷流水是一款界面美观、功能丰富的本地记账WebApp
 
-基于 react + react-router + typeScript 开发的一款单页面应用，并使用 create-react-app 进行项目构建
+基于 react + react-router + typeScript 开发的一款单页面应用，并使用 webpack 进行项目构建
 
-制作这个应用的初衷是想将自己对于 Vue 的学习实践一下，该应用从界面设计到开发均由本人独立制作完成
+之前在学习 vue 的时候制作了这款 WebApp，现在使用 react 的技术重新将项目实现一遍，作为学习 react 的练习
+
+如果您对 vue 版本感兴趣，请移步至此 [传送门🚀](https://github.com/AlierQ/Mint-vue)
 
 应用界面UI设计使用 Figma 进行制作 [传送门🚀](https://www.figma.com/file/0Sq4AXAqFWDlxJUYmK44XN/Mint)
 
