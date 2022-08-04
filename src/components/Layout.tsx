@@ -5,16 +5,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   height: 100vh;
 `;
-const Top = styled.div`
-  //border: 1px solid yellow;
-`;
+const Top = styled.div``;
 const Content = styled.div`
-  //border: 1px solid blue;
+  overflow: auto;
   flex-grow: 1;
 `;
-const Bottom = styled.div`
-  //border: 1px solid red;
-`;
+const Bottom = styled.div``;
 
 const Layout = (props: any) => {
 

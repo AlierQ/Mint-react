@@ -108,7 +108,9 @@ const StatisticsDatalist: React.FC<Props> = (props) => {
             </div>
           );
         })
+
       }
+
     </Wrapper>
   );
 };
