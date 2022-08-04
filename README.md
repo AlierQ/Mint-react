@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+# 🌿Mint 薄荷流水
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mint 薄荷流水是一款界面美观、功能丰富的本地记账WebApp
 
-## Available Scripts
+基于 React + react-router + TypeScript 开发的一款单页面应用，并使用create-react-app进行项目构建
 
-In the project directory, you can run:
+制作这个应用的初衷是想将自己对于 Vue 的学习实践一下，该应用从界面设计到开发均由本人独立制作完成
 
-### `yarn start`
+应用界面UI设计使用 Figma 进行制作 [传送门🚀](https://www.figma.com/file/0Sq4AXAqFWDlxJUYmK44XN/Mint)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+项目预览地址 [传送门🚀](https://alierq.github.io/Mint-react-pages/)  PS:该应用制作的是基于移动端的，PC端请在开发者模式中使用移动设备预览
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+在项目开发过程中我遇到了很多问题&Bug，如果你对我所遇到的问题以及解决方法感兴趣，请移步至此 [传送门🚀]()
 
-### `yarn test`
+## 运行项目
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+yarn start
+```
 
-### `yarn build`
+## 构建项目
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+yarn build
+```
