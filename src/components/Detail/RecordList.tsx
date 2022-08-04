@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Icon from 'components/Icon';
 import React from 'react';
+import toFixed from '../../lib/toFixed';
 
 const Wrapper = styled.div`
   display: flex;
@@ -82,9 +83,9 @@ const RecordList: React.FC<Props> = (props) => {
               <div className="recordDate">
                 <div>{group.title}</div>
                 <div>
-                  {group.inSum !== 0 ? '收入：' + group.inSum : ''}
+                  {group.inSum !== 0 ? '收入：' + toFixed(group.inSum as number,2) : ''}
                   &nbsp;&nbsp;
-                  {group.outSum !== 0 ? '支出：' + group.outSum : ''}
+                  {group.outSum !== 0 ? '支出：' + toFixed(group.outSum as number,2) : ''}
                 </div>
               </div>
               <ul>
@@ -100,7 +101,7 @@ const RecordList: React.FC<Props> = (props) => {
                             {item.remake}
                           </div>
                           <div className="money-number">
-                            {(item.category === 'in' ? '+' : '-') + item.amount}
+                            {(item.category === 'in' ? '+' : '-') + toFixed(item.amount,2)}
                           </div>
                         </div>
                       </li>

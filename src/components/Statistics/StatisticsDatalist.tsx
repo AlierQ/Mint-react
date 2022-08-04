@@ -97,7 +97,7 @@ const StatisticsDatalist: React.FC<Props> = (props) => {
                           </div>
                           <div className="remark">{item.remake}</div>
                           <div className="money-number">
-                            {(item.category === 'out' ? '-' : '+') + item.amount}
+                            {(item.category === 'out' ? '-' : '+') + toFixed(item.amount, 2)}
                           </div>
                         </div>
                       </li>
