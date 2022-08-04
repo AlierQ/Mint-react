@@ -1,14 +1,22 @@
 import Nav from 'components/Nav';
 import Layout from 'components/Layout';
+import styled from 'styled-components';
+import StatisticsTop from '../components/Statistics/StatisticsTop';
+
+const Top = styled.div``;
+const Content = styled.div``;
+const Bottom = styled.div``;
 
 const Detail = () => {
   return (
     <Layout>
-      <div>这里是统计页面的头部</div>
-      <div>这里是统计页面的内容</div>
-      <div>
+      <Top>
+        <StatisticsTop/>
+      </Top>
+      <Content>这里是统计页面的内容</Content>
+      <Bottom>
         <Nav/>
-      </div>
+      </Bottom>
     </Layout>
   );
 };
