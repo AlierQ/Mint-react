@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React from 'react';
 
 const Wrapper = styled.div`
   display: flex;
@@ -65,19 +66,45 @@ const Wrapper = styled.div`
   }
 `;
 
-const StatisticsTop = () => {
+type Props = {
+  category: string
+  groupType: string
+  updateCategory: (value: string) => void
+  updateGroupType: (value: string) => void
+}
+
+const StatisticsTop: React.FC<Props> = (props) => {
+
   return (
     <Wrapper>
       <div className="top">
-        <div className="selected">支出
+        <div className={props.category === 'out' ? 'selected' : ''}
+             onClick={() => {
+               props.updateCategory('out');
+             }}>支出
         </div>
-        <div className="selected">收入
+        <div className={props.category === 'in' ? 'selected' : ''}
+             onClick={() => {
+               props.updateCategory('in');
+             }}>收入
         </div>
       </div>
       <div className="bottom">
-        <div className="selected">周</div>
-        <div>月</div>
-        <div className="selected">年</div>
+        <div className={props.groupType === 'week' ? 'selected' : ''}
+             onClick={() => {
+               props.updateGroupType('week');
+             }}>周
+        </div>
+        <div className={props.groupType === 'month' ? 'selected' : ''}
+             onClick={() => {
+               props.updateGroupType('month');
+             }}>月
+        </div>
+        <div className={props.groupType === 'year' ? 'selected' : ''}
+             onClick={() => {
+               props.updateGroupType('year');
+             }}>年
+        </div>
       </div>
     </Wrapper>
   );
