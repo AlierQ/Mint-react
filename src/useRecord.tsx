@@ -12,10 +12,10 @@ type Record = {
 
 
 const useRecord = () => {
-  const [record, setRecord] = useState<Record[]>(getRecordStorage('recordList'));
+  const [record, setRecord] = useState<Record[]>(getRecordStorage('recordList_react'));
 
   useEffect(()=>{
-    window.localStorage.setItem('recordList', JSON.stringify(record));
+    window.localStorage.setItem('recordList_react', JSON.stringify(record));
   },[record])
 
   return {

@@ -7,16 +7,16 @@ type TagsType = {
 }
 
 const useTags = () => {
-  const [outTags, setOutTags] = useState<TagsType[]>(getTagsStorage('outTags'));
+  const [outTags, setOutTags] = useState<TagsType[]>(getTagsStorage('outTags_react'));
 
-  const [inTags, setInTags] = useState<TagsType[]>(getTagsStorage('inTags'));
+  const [inTags, setInTags] = useState<TagsType[]>(getTagsStorage('inTags_react'));
 
   useEffect(() => {
-    window.localStorage.setItem('inTags', JSON.stringify(inTags));
+    window.localStorage.setItem('inTags_react', JSON.stringify(inTags));
   }, [inTags]);
 
   useEffect(() => {
-    window.localStorage.setItem('outTags', JSON.stringify(outTags));
+    window.localStorage.setItem('outTags_react', JSON.stringify(outTags));
   }, [outTags]);
 
   const getTagsData = (category: string) => {
