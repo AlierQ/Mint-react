@@ -1,4 +1,4 @@
-# 🌿Mint 薄荷流水
+# 🌿Mint 薄荷流水（react版本）
 
 Mint 薄荷流水是一款界面美观、功能丰富的本地记账WebApp
 
