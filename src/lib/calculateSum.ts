@@ -15,7 +15,7 @@ type RecordGroup = {
 }
 
 const calculateSum = (array: RecordGroup[]) => {
-  array.map((group: RecordGroup) => {
+  array.forEach((group: RecordGroup) => {
     group.inSum = group.items.reduce((sum: number, item: Record) => {
       if (item.category === 'in') {
         return sum + item.amount;
